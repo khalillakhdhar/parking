@@ -1,0 +1,7 @@
+1-comparaison d'image(ML)
+2-templating
+3-conception (cas+ classe)
+4-authentification
+5-profile
+6-gerer utilisateur
+7-déconnexion et sécurité
