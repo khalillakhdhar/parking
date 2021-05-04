@@ -14,13 +14,13 @@
 
     <!-- Login Form -->
     <form #myform="ngForm">
-      <input type="text" required  [(ngModel)]="user.nom"   id="nom" class="fadeIn second" name="n" placeholder="nom">
-      <input type="text" id="tel" required  [(ngModel)]="user.tel" name="tel" class="fadeIn second" name="telephone" placeholder="telephone">
+      <input type="text" required pattern="[A-Z a-zéè]{5,60}"  [(ngModel)]="user.nom"   id="nom" #nom="ngModel" class="fadeIn second" name="n" placeholder="nom">
+      <input type="text" id="tel" pattern="[0-9 +]{8,16}" #tel="ngModel" required  [(ngModel)]="user.tel" name="tel" class="fadeIn second" name="telephone" placeholder="telephone">
       <input type="text" id="adresse" required [(ngModel)]="user.adresse" class="fadeIn second" name="adresse" placeholder="Adresse">
-      <input type="text" id="login" required [(ngModel)]="user.login" class="fadeIn second" name="login" placeholder="login">
+      <input type="text" id="login" minlength="6" required [(ngModel)]="user.login" class="fadeIn second" name="login" placeholder="login">
 
-      <input type="password" id="password" required [(ngModel)]="user.mdp" class="fadeIn third" name="mdp" placeholder="mot de passe">
-      <input type="submit"  (click)="adduser()"  class="fadeIn fourth" value="Inscription">
+      <input type="password" minlength="6" id="password" required [(ngModel)]="user.mdp" class="fadeIn third" name="mdp" placeholder="mot de passe">
+      <input type="submit" [disabled]="myform.invalid" (click)="adduser()"  class="fadeIn fourth" value="Inscription">
     </form>
 
     <!-- Remind Passowrd -->
@@ -29,4 +29,23 @@
     </div>
 
   </div>
+  <div *ngIf="nom.invalid && (nom.dirty || nom.touched)" class="alert a
+lert-danger">
+ <div *ngIf="nom.errors.required">
+ Titre obligatoire.
+ </div>
+ <div *ngIf="nom.errors.pattern">
+ le nom ne peux contenir que des lettres ou des espace (au moins 5 caractéres)
+ </div>
+
+</div><br>
+ <div *ngIf="tel.invalid && (tel.dirty || tel.touched)" class="alert a
+lert-danger">
+ <div *ngIf="tel.errors.required">
+ Téléphone obligatoire.
+ </div>
+ <div *ngIf="tel.errors.pattern">
+ le téléphone ne peux contenir que des chiffre (au moins 8 )
+ </div>
+></div><br>
 </div>
