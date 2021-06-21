@@ -26,12 +26,21 @@
           <h5 class="modal-title" id="exampleModalLabel">Voiture</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="form-group">
+          <input (change)="onFileSelected($event)"
+              type="file"
+              id="file"
+              #curriculame
+              name="cv"
+              autocomplete="off"
+               class="form-control" placeholder="Enter ..." >
+        </div>
         <div class="modal-body">
-          ...
+          
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-          <button type="button" class="btn btn-primary">Ajouter</button>
+          <button type="button" (click)="add()" class="btn btn-primary">Ajouter</button>
         </div>
       </div>
     </div>
@@ -47,10 +56,10 @@
                                         Entrée
                                     </th>
                                     <th>
-                                        Temps écoulée
+                                      Sortie
                                     </th>
                                     <th>
-                                        Sortie
+                                      Temps écoulée
                                     </th>
                                     <th>
                                         Action
@@ -58,7 +67,13 @@
 
                                 </thead>
                                 <tbody>
-                               
+                            <tr *ngFor="let sess of sessions">
+                                 <td><img src="{{sess.matricule}}" height="100" width="100"></td>
+                                 <td>{{sess.entree |date :'medium'}}></td>
+                                 <td>{{sess.sortie | date :'medium'}}></td>
+                                 <td>{{sess.entree -sess.sortie| date :'medium' }} ({{sess.totale}})</td>
+                                 <td><button (click)="edit(sess.id)" class="btn btn-warning">marquez la sortie</button></td>
+                            </tr>
                                    
                                 </tbody>
                             </table>

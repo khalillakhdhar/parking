@@ -1,5 +1,6 @@
 export class Session {
-    entree:string;
-    sortie:string;
+    entree:any;
+    sortie:any;
     matricule:string;
+    totale:number;
 }
